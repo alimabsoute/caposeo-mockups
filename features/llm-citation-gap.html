@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LLM Citation Gap Analyzer — Caposeo</title>
+  <meta name="description" content="Find out why ChatGPT cites your competitor instead of you. Structural embedding diff across 4 LLMs. SHAP-ranked recommendations, not tips and tricks."/>
+  <link rel="icon" href="../assets/caposeo-icon.png"/>
+  <link rel="stylesheet" href="../shared/styles.css"/>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="../assets/caposeo-logo.png" alt="Caposeo"/></a>
+    <div class="nav-links"><a href="../index.html#features">Features</a><a href="decay-engine.html">Decay Engine</a><a href="ai-overview.html">AI Overview</a><a href="../pricing.html">Pricing</a></div>
+    <div class="nav-cta"><a href="../waitlist.html" class="btn btn-primary btn-sm">Get Early Access →</a></div>
+  </div>
+</nav>
+
+<section class="feature-hero section">
+  <div class="container">
+    <span class="badge badge-blue">🧬 LLM Citation Gap Analyzer · Live</span>
+    <h1 style="max-width:740px;margin-top:1rem">Find out why ChatGPT cites your competitor instead of you.</h1>
+    <p class="lead mt-4" style="max-width:640px">
+      ChatGPT, Claude, Perplexity, and Gemini are sending trust and traffic to the brands they cite — and most of the time, it isn't you.
+      We run your target queries across all four LLMs, score the citations, and run a structural diff between cited and non-cited content.
+      Not vibes. Diagnostics.
+    </p>
+    <p class="mt-4" style="font-size:0.875rem;color:var(--primary);font-weight:600">
+      The only tool that diffs cited vs. non-cited content across 4 LLMs and outputs a structural delta — not a vibe score.
+    </p>
+    <div class="mt-6 flex gap-3 flex-wrap">
+      <a href="../waitlist.html" class="btn btn-primary btn-lg">Get Access →</a>
+      <a href="#methodology" class="btn btn-outline btn-lg">See the Methodology</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">For Marketers</p>
+    <h2>AI platforms are the new first page of Google. Are you on it?</h2>
+    <p class="lead mt-4" style="max-width:680px">
+      A growing share of informational queries now end in an LLM response — with citations. Users trust those citations.
+      If your competitor is cited and you aren't, they get the brand impression, the trust, and increasingly, the click.
+      LLM Citation Gap Analyzer shows you the exact structural reasons the AI chose them over you,
+      then generates line-level edit recommendations to close the gap.
+    </p>
+    <div class="grid-3 mt-8">
+      <div class="card">
+        <h4>Runs across 4 LLMs</h4>
+        <p class="text-sm mt-2">Claude, GPT-4, Perplexity, and Gemini all have different citation preferences. We normalize across all four so you're not optimizing for one and losing the others.</p>
+      </div>
+      <div class="card">
+        <h4>Structural diff, not vibes</h4>
+        <p class="text-sm mt-2">Semantic embeddings + entity coverage analysis tells you exactly which structural elements are present in cited content that are absent in yours. No guessing.</p>
+      </div>
+      <div class="card">
+        <h4>Citation rate tracking</h4>
+        <p class="text-sm mt-2">We track your citation rate over time across all four platforms. Watch it improve as you implement recommendations — months before it shows in any traditional ranking dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="methodology">
+  <div class="container">
+    <p class="section-label">For Data Teams</p>
+    <h2>Citation isn't ranking. It's a different signal stack — and we figured out which signals.</h2>
+    <div style="display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem;max-width:840px">
+      <div class="card" style="border-left:3px solid var(--primary)">
+        <h4>Step 1 — Citation Harvesting</h4>
+        <p class="text-sm mt-2">We submit a parameterized query set to all four LLMs via API. Responses are parsed for citation patterns: explicit URL citations, domain mentions, paraphrased content attribution. Confidence on each attribution is scored — we don't count "probably from" as a citation.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--primary)">
+        <h4>Step 2 — Structural Feature Extraction</h4>
+        <p class="text-sm mt-2">Cited and non-cited content is fetched and embedded via Voyage AI. We extract: entity density per 1K tokens, claim-source proximity (how close are cited facts to their source), H-tag hierarchy depth, schema markup types, definition density, first-paragraph answer completeness, reading level, and content depth proxies.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--steel)">
+        <h4>Step 3 — Structural Diff</h4>
+        <p class="text-sm mt-2">We run a cosine similarity analysis between your content and the cited content in the same topic cluster. The gap report quantifies the delta on each feature: "cited content has 2.3× more named entities per 1K tokens than your content." The diff is factual, not qualitative.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--primary)">
+        <h4>Step 4 — Claude Sonnet Recommendation Pass</h4>
+        <p class="text-sm mt-2">The structural diff is passed to Claude Sonnet with a structured output schema. It generates concrete, line-level edit recommendations ranked by SHAP-style feature contribution. "Add a definition block for [entity] in the second paragraph" — not "improve entity coverage."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHAP DEMO -->
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">What It Looks Like</p>
+    <h2>Feature contributions for "best CRM for startups"</h2>
+    <p class="lead mt-3" style="max-width:600px">Your page vs. the top-cited competitor. Green = you have more of this feature. Red = you're missing it.</p>
+    <div class="grid-2 mt-6" style="gap:2rem;max-width:960px">
+      <div class="chart-container">
+        <div class="chart-title">SHAP-style citation gap contributions</div>
+        <div id="shap-chart" data-chart="shap" data-opts='{"features":[{"name":"Named entity density","value":0.38},{"name":"Definition blocks present","value":0.29},{"name":"First-paragraph answer","value":0.24},{"name":"Schema: FAQPage markup","value":0.18},{"name":"Claim-source proximity","value":0.15},{"name":"H2/H3 hierarchy depth","value":-0.08},{"name":"Reading level","value":-0.05}]}'></div>
+        <p class="text-xs text-muted mt-3">Red bars = your page is weaker here than cited content · Green = you're stronger</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="card" style="background:rgba(201,74,74,0.05);border-color:rgba(201,74,74,0.2)">
+          <h4 style="margin-bottom:0.5rem">Top 3 recommendations</h4>
+          <ol style="padding-left:1.25rem;display:flex;flex-direction:column;gap:0.75rem">
+            <li class="text-sm">Add a named entity definition block for "CRM" and "sales pipeline" in the first 200 words. Cited content defines both terms explicitly — you don't.</li>
+            <li class="text-sm">Add a direct-answer first paragraph structured as: "[X] is best for startups because [specific reason]." Currently your opening is a question.</li>
+            <li class="text-sm">Add FAQPage schema markup. 7 of 9 cited pages have it. You don't.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h4 style="margin-bottom:0.5rem">Citation rate across 4 LLMs</h4>
+          <div style="display:flex;flex-direction:column;gap:0.625rem">
+            <div class="flex items-center gap-3"><span style="width:80px;font-size:0.8125rem">Claude</span><div style="flex:1;background:var(--muted);border-radius:999px;height:8px"><div style="width:12%;height:100%;background:var(--danger);border-radius:999px"></div></div><span class="text-sm font-mono">12%</span></div>
+            <div class="flex items-center gap-3"><span style="width:80px;font-size:0.8125rem">GPT-4</span><div style="flex:1;background:var(--muted);border-radius:999px;height:8px"><div style="width:8%;height:100%;background:var(--danger);border-radius:999px"></div></div><span class="text-sm font-mono">8%</span></div>
+            <div class="flex items-center gap-3"><span style="width:80px;font-size:0.8125rem">Perplexity</span><div style="flex:1;background:var(--muted);border-radius:999px;height:8px"><div style="width:18%;height:100%;background:var(--warning);border-radius:999px"></div></div><span class="text-sm font-mono">18%</span></div>
+            <div class="flex items-center gap-3"><span style="width:80px;font-size:0.8125rem">Gemini</span><div style="flex:1;background:var(--muted);border-radius:999px;height:8px"><div style="width:5%;height:100%;background:var(--danger);border-radius:999px"></div></div><span class="text-sm font-mono">5%</span></div>
+          </div>
+          <p class="text-xs text-muted mt-3">Competitor average across same queries: 42% / 38% / 51% / 29%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:760px">
+    <p class="section-label">Honest Limits</p>
+    <div class="honest-limits">
+      <h4>What LLM Citation Gap doesn't do</h4>
+      <p class="text-sm mt-2">LLM citation patterns change with model updates — what Claude 3.7 cites may differ from Claude 4.x. We re-run baseline analysis after major model releases. Citation rate is a leading indicator of AI visibility, but it doesn't directly correlate to traffic until AI-cited links become more prominent in UI. This tool diagnoses the structural gap — it doesn't guarantee that implementing recommendations will raise citation rate within any specific timeframe. Results typically appear in 4–12 weeks post-implementation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="text-align:center">
+  <div class="container">
+    <h2>AI is rewriting the first page. Know where you stand on it.</h2>
+    <p class="lead mt-4" style="max-width:500px;margin:1.5rem auto">Run your first LLM citation gap analysis in under 5 minutes after connecting your site.</p>
+    <a href="../waitlist.html" class="btn btn-primary btn-lg mt-4">Get Founding Member Access →</a>
+    <p class="text-sm text-muted mt-3">Lock in $49/mo · First 100 signups only</p>
+  </div>
+</section>
+
+<footer><div class="container"><div class="flex justify-between items-center flex-wrap gap-4"><a href="../index.html" class="footer-brand">Caposeo</a><div style="display:flex;gap:1.5rem;flex-wrap:wrap"><a href="decay-engine.html">Decay Engine</a><a href="pulse-lab.html">Pulse Lab</a><a href="ai-overview.html">AI Overview</a><a href="../pricing.html">Pricing</a></div></div></div></footer>
+<script src="../shared/charts.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Overview Infiltrator — Caposeo</title>
+  <meta name="description" content="Get inside the box that's stealing your traffic. SHAP-style feature contributions for AI Overview citation probability. Daily SERP monitoring, structural recommendations."/>
+  <link rel="icon" href="../assets/caposeo-icon.png"/>
+  <link rel="stylesheet" href="../shared/styles.css"/>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="../assets/caposeo-logo.png" alt="Caposeo"/></a>
+    <div class="nav-links"><a href="../index.html#features">Features</a><a href="decay-engine.html">Decay Engine</a><a href="llm-citation-gap.html">LLM Citation Gap</a><a href="../pricing.html">Pricing</a></div>
+    <div class="nav-cta"><a href="../waitlist.html" class="btn btn-primary btn-sm">Get Early Access →</a></div>
+  </div>
+</nav>
+
+<section class="feature-hero section">
+  <div class="container">
+    <span class="badge badge-blue">🎯 AI Overview Infiltrator · Live</span>
+    <h1 style="max-width:720px;margin-top:1rem">Get inside the box that's stealing your traffic.</h1>
+    <p class="lead mt-4" style="max-width:640px">
+      Google's AI Overview is taking a bite out of every keyword you rank for.
+      We give you the blueprint to get cited inside the box — so when a user searches your topic,
+      your name shows up in the AI summary, not just in result #4.
+    </p>
+    <p class="mt-4" style="font-size:0.875rem;color:var(--primary);font-weight:600">
+      The only tool that quantifies AI Overview citation probability with SHAP-style feature contributions — not "tips and tricks."
+    </p>
+    <div class="mt-6 flex gap-3 flex-wrap">
+      <a href="../waitlist.html" class="btn btn-primary btn-lg">Get Access →</a>
+      <a href="#methodology" class="btn btn-outline btn-lg">See the Model</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">For Marketers</p>
+    <h2>Position 1 matters less now. Citation in the AI box matters more.</h2>
+    <p class="lead mt-4" style="max-width:680px">
+      Studies are showing AI Overviews push organic results below the fold for 40–60% of informational queries.
+      The brands cited in the Overview box get the impression even if they're ranked #5.
+      AI Overview Infiltrator monitors your target keywords daily, detects when an Overview appears,
+      identifies which pages Google cites, and gives you a ranked list of structural changes
+      that would increase your citation probability — with the expected lift quantified.
+    </p>
+    <div class="grid-3 mt-8">
+      <div class="card"><h4>Daily monitoring</h4><p class="text-sm mt-2">Know within 24 hours when AI Overviews appear or disappear for keywords you track.</p></div>
+      <div class="card"><h4>Why you're not cited</h4><p class="text-sm mt-2">Logistic regression model tells you exactly which structural features your page is missing versus cited pages.</p></div>
+      <div class="card"><h4>Ranked action list</h4><p class="text-sm mt-2">Recommendations ordered by SHAP contribution — highest-leverage edits first, not a generic best-practices list.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="methodology">
+  <div class="container">
+    <p class="section-label">For Data Teams</p>
+    <h2>Logistic regression on a 50K-URL corpus. SHAP contributions per page.</h2>
+    <div style="display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem;max-width:840px">
+      <div class="card" style="border-left:3px solid var(--primary)">
+        <h4>Daily SERP Scraping</h4>
+        <p class="text-sm mt-2">Firecrawl + headless Chrome renders each tracked SERP daily. AI Overview block is detected via DOM selector heuristics plus structural pattern matching. Cited URLs are extracted and attributed to their owning domain.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--primary)">
+        <h4>Feature Extraction (22 features)</h4>
+        <p class="text-sm mt-2">From cited and non-cited pages: entity density, schema markup presence (FAQPage, HowTo, Article), H-tag hierarchy, first-paragraph directness, definition density, reading level, content length, E-E-A-T signals (author byline, credentials, publication date), internal link depth, claim-source proximity, and image alt text coverage.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--steel)">
+        <h4>Logistic Regression Model</h4>
+        <p class="text-sm mt-2">Trained on 50,000 URLs from our SERP snapshot corpus — labeled cited or not-cited for each AI Overview event. Regularization via L2 penalty (λ tuned via cross-validation). AUROC: 0.81 on holdout set. We chose logistic regression over gradient boosting deliberately: coefficients are interpretable, SHAP values are exact, and the model doesn't overfit niche SERPs the way tree models can.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--primary)">
+        <h4>SHAP Contributions Per Page</h4>
+        <p class="text-sm mt-2">We compute Shapley values for each feature for your specific page. The output isn't "you should improve entity coverage" — it's "entity density is contributing −0.31 to your citation probability on this specific query; adding 4 named entity definitions would shift this feature from the 23rd to the 68th percentile, predicted citation probability shift: +0.09."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">What It Looks Like</p>
+    <h2>Your AI Overview citation probability for "best project management software"</h2>
+    <div class="grid-2 mt-6" style="gap:2rem;max-width:960px">
+      <div class="chart-container">
+        <div class="chart-title">Feature contributions to citation probability (SHAP)</div>
+        <div id="aio-shap" data-chart="shap" data-opts='{"features":[{"name":"FAQPage schema missing","value":0.31},{"name":"No author byline/credentials","value":0.26},{"name":"First paragraph not direct answer","value":0.22},{"name":"Low entity density (p23)","value":0.18},{"name":"No definition blocks","value":0.14},{"name":"Reading level (good)","value":-0.06},{"name":"Content depth (good)","value":-0.04}]}'></div>
+        <p class="text-xs text-muted mt-3">Red = hurting your citation probability · Green = helping</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="card">
+          <h4 style="margin-bottom:0.5rem">Citation Probability</h4>
+          <div style="font-size:2.5rem;font-weight:800;color:var(--warning)">19% <span style="font-size:1rem;font-weight:400;color:var(--muted-fg)">current</span></div>
+          <div style="font-size:1.5rem;font-weight:700;color:var(--success);margin-top:0.25rem">41% <span style="font-size:0.875rem;font-weight:400;color:var(--muted-fg)">after top 3 fixes</span></div>
+        </div>
+        <div class="card" style="background:rgba(74,111,165,0.05)">
+          <h4 style="margin-bottom:0.5rem">Top 3 fixes (by leverage)</h4>
+          <ol style="padding-left:1.25rem;display:flex;flex-direction:column;gap:0.5rem">
+            <li class="text-sm">Add FAQPage schema markup. Estimated probability gain: +0.09</li>
+            <li class="text-sm">Add author credentials section (name, title, X years experience). Estimated gain: +0.07</li>
+            <li class="text-sm">Rewrite opening paragraph as direct answer: "The best project management software for [profile] is [X] because..." Estimated gain: +0.06</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h4 class="text-sm mb-2">AI Overview presence — last 30 days</h4>
+          <div style="display:flex;align-items:flex-end;gap:4px;height:48px">
+            {[1,1,1,0,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1].map((v,i) =>
+              `<div style="flex:1;height:${v ? '100%' : '30%'};background:${v ? '#4a6fa5' : '#dfe3ec'};border-radius:2px"></div>`
+            ).join('')}
+          </div>
+          <p class="text-xs text-muted mt-2">Present 27/30 days · You are NOT cited in any appearance</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:760px">
+    <p class="section-label">Honest Limits</p>
+    <div class="honest-limits">
+      <h4>What AI Overview Infiltrator doesn't do</h4>
+      <p class="text-sm mt-2">The logistic regression model has AUROC 0.81 — meaning it's meaningfully predictive but not perfect. A page can implement all recommendations and still not get cited if Google's intent model changes or the AI Overview format for that query shifts. We can't force a citation — we can only improve the structural factors Google's model appears to weight. Model accuracy also varies by query category: health and legal SERPs have lower model confidence due to E-E-A-T complexity, and confidence is shown accordingly. We retrain the model monthly on new SERP corpus data.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="text-align:center">
+  <div class="container">
+    <h2>The box is taking your traffic. Time to get inside it.</h2>
+    <p class="lead mt-4" style="max-width:500px;margin:1.5rem auto">Daily monitoring + probability scoring + ranked structural fixes. The most defensible advantage you can build in 2026.</p>
+    <a href="../waitlist.html" class="btn btn-primary btn-lg mt-4">Get Founding Member Access →</a>
+    <p class="text-sm text-muted mt-3">Lock in $49/mo · First 100 signups only</p>
+  </div>
+</section>
+
+<footer><div class="container"><div class="flex justify-between items-center flex-wrap gap-4"><a href="../index.html" class="footer-brand">Caposeo</a><div style="display:flex;gap:1.5rem;flex-wrap:wrap"><a href="decay-engine.html">Decay Engine</a><a href="llm-citation-gap.html">LLM Citation Gap</a><a href="pulse-lab.html">Pulse Lab</a><a href="../pricing.html">Pricing</a></div></div></div></footer>
+<script src="../shared/charts.js"></script>
+<script>
+// render presence bars manually since template literals don't work in static HTML
+const presenceEl = document.querySelector('.card:last-child [style*="height:48px"]');
+if (presenceEl) {
+  const days = [1,1,1,0,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1];
+  presenceEl.innerHTML = days.map(v => `<div style="flex:1;height:${v?100:30}%;background:${v?'#4a6fa5':'#dfe3ec'};border-radius:2px"></div>`).join('');
+}
+</script>
+</body>
+</html>

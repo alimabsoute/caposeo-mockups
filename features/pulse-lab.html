@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pulse Lab — Caposeo</title>
+  <meta name="description" content="Multi-source trend fusion. Google Trends, Reddit velocity, news acceleration, and SERP volatility — z-scored and collapsed to a directional Pulse Score."/>
+  <link rel="icon" href="../assets/caposeo-icon.png"/>
+  <link rel="stylesheet" href="../shared/styles.css"/>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="../assets/caposeo-logo.png" alt="Caposeo"/></a>
+    <div class="nav-links">
+      <a href="../index.html#features">Features</a>
+      <a href="decay-engine.html">Decay Engine</a>
+      <a href="llm-citation-gap.html">LLM Citation Gap</a>
+      <a href="../pricing.html">Pricing</a>
+    </div>
+    <div class="nav-cta"><a href="../waitlist.html" class="btn btn-primary btn-sm">Get Early Access →</a></div>
+  </div>
+</nav>
+
+<section class="feature-hero section">
+  <div class="container">
+    <span class="badge badge-blue">📡 Pulse Lab · Live</span>
+    <h1 style="max-width:720px;margin-top:1rem">The trend desk you'd hire if you could afford it.</h1>
+    <p class="lead mt-4" style="max-width:640px">
+      Stop guessing what to write next. Pulse Lab fuses Google Trends, Reddit conversations, news velocity, and
+      SERP volatility into one Pulse Score per topic — so you write about things that are <em>about to peak</em>,
+      not things that peaked three months ago.
+    </p>
+    <p class="mt-4" style="font-size:0.875rem;color:var(--primary);font-weight:600;max-width:640px">
+      The only trend tool that fuses 4 independent signals with z-scored normalization — not a black-box trend score.
+    </p>
+    <div class="mt-6 flex gap-3 flex-wrap">
+      <a href="../waitlist.html" class="btn btn-primary btn-lg">Get Access →</a>
+      <a href="#methodology" class="btn btn-outline btn-lg">See the Signal Stack</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">For Marketers</p>
+    <h2>Write the article before it peaks. Not after.</h2>
+    <p class="lead mt-4" style="max-width:680px">
+      Every topic has a lifecycle. Most content teams publish at peak or on the way down because they spot trends in their Twitter feed.
+      Pulse Lab gives you a week or two of lead time by watching four signals simultaneously — before any one signal alone would tip you off.
+      Every topic comes with a calendar recommendation: "publish in the next 11 days or miss the window."
+    </p>
+    <div class="grid-4 mt-8">
+      <div class="card">
+        <h4>Trend Velocity</h4>
+        <p class="text-sm mt-2">Rising, peaking, declining, or stable — classified via slope thresholds with 90-day baseline normalization.</p>
+      </div>
+      <div class="card">
+        <h4>Signal Fusion</h4>
+        <p class="text-sm mt-2">Four sources collapsed to one score. Disagreement between signals widens the confidence band, not the score.</p>
+      </div>
+      <div class="card">
+        <h4>Topic Clusters</h4>
+        <p class="text-sm mt-2">Embedding-based clusters of semantically related queries. Find adjacent keywords you didn't know were surging.</p>
+      </div>
+      <div class="card">
+        <h4>Category Explorer</h4>
+        <p class="text-sm mt-2">Pre-aggregated category-level trend data across 40+ verticals. See macro demand before it reaches individual keywords.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="methodology">
+  <div class="container">
+    <p class="section-label">For Data Teams</p>
+    <h2>Four signals. One number. All the uncertainty shown.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;max-width:900px">
+      <div class="card">
+        <h4>Search Demand Signal</h4>
+        <p class="text-sm mt-2">Google Trends relative interest, z-scored against 90-day baseline for the same keyword. We account for the fact that Trends indices are relative, not absolute — normalizing against baseline removes that ambiguity.</p>
+      </div>
+      <div class="card">
+        <h4>Social Signal</h4>
+        <p class="text-sm mt-2">Reddit submission velocity (new posts/hour) plus comment delta (engagement acceleration). Both z-scored. We use Reddit because it's the leading indicator for organic search spikes by 2–4 days on average.</p>
+      </div>
+      <div class="card">
+        <h4>Editorial Signal</h4>
+        <p class="text-sm mt-2">News mention acceleration via Brave News API — not count, but velocity. A sudden increase in news coverage about a topic is a leading indicator that search demand is about to follow.</p>
+      </div>
+      <div class="card">
+        <h4>SERP Volatility Signal</h4>
+        <p class="text-sm mt-2">Results churn on the target SERP. High churn = Google isn't satisfied with current results = opportunity window is open. Measured as Spearman rank correlation between consecutive daily SERPs.</p>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;background:var(--surface-cool);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;max-width:900px">
+      <p class="text-sm font-mono" style="color:var(--ink)">
+        pulse_score = Σ (w_i × zscore_i) for i ∈ {search, social, editorial, serp} · each w_i learned from historical predictive accuracy
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO PULSE GAUGES -->
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">Live Pulse Scores</p>
+    <h2>Three topics right now.</h2>
+    <div class="grid-3 mt-6" style="max-width:800px">
+      <div class="card text-center">
+        <div id="pulse-1" data-chart="pulse" data-opts='{"score":82}'></div>
+        <h4 style="margin-top:0.5rem">AI Agents for SEO</h4>
+        <p class="text-xs text-muted mt-1">Publish in next 8 days</p>
+      </div>
+      <div class="card text-center">
+        <div id="pulse-2" data-chart="pulse" data-opts='{"score":61}'></div>
+        <h4 style="margin-top:0.5rem">Technical SEO Audits</h4>
+        <p class="text-xs text-muted mt-1">Growing steadily · 14-day window</p>
+      </div>
+      <div class="card text-center">
+        <div id="pulse-3" data-chart="pulse" data-opts='{"score":28}'></div>
+        <h4 style="margin-top:0.5rem">Link Building 2024</h4>
+        <p class="text-xs text-muted mt-1">Declining · skip for now</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface-cool)">
+  <div class="container">
+    <p class="section-label">vs. Alternatives</p>
+    <h2>What nobody else built.</h2>
+    <div style="overflow-x:auto;margin-top:1.5rem">
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Capability</th><th class="caposeo-col">Caposeo Pulse Lab</th><th>Google Trends</th><th>BuzzSumo</th><th>Exploding Topics</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Multi-source signal fusion</td><td class="caposeo-col check">✓ 4 signals, z-scored</td><td class="cross">✗ Search only</td><td class="partial">⚠ Social only</td><td class="cross">✗ Proprietary black box</td></tr>
+          <tr><td>SERP volatility as signal</td><td class="caposeo-col check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+          <tr><td>Uncertainty / confidence band</td><td class="caposeo-col check">✓ Shown when signals disagree</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+          <tr><td>Publish window recommendation</td><td class="caposeo-col check">✓ Days until peak</td><td class="cross">✗</td><td class="cross">✗</td><td class="partial">⚠ Manual interpretation</td></tr>
+          <tr><td>Embedding-based topic clusters</td><td class="caposeo-col check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:760px">
+    <p class="section-label">Honest Limits</p>
+    <div class="honest-limits">
+      <h4>What Pulse Lab doesn't do</h4>
+      <p class="text-sm mt-2">Pulse scores are leading indicators, not guarantees. We surface signals that historically precede traffic spikes — but a topic can surge on social and fail to convert to search demand. The score quantifies signal strength, not certainty. For low-volume niche topics (&lt;500 monthly searches), the SERP volatility signal is unreliable and is down-weighted automatically. We also don't predict the magnitude of a trend — only its direction and velocity. "Rising fast" ≠ "will become your highest-traffic piece."</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="text-align:center">
+  <div class="container">
+    <h2>Four signals. One score. You decide when to publish.</h2>
+    <p class="lead mt-4" style="max-width:500px;margin:1.5rem auto">Stop publishing reactively. Pulse Lab puts trend intelligence in front of the editorial calendar, not behind it.</p>
+    <a href="../waitlist.html" class="btn btn-primary btn-lg mt-4">Get Founding Member Access →</a>
+    <p class="text-sm text-muted mt-3">Lock in $49/mo · First 100 signups only</p>
+  </div>
+</section>
+
+<footer><div class="container"><div class="flex justify-between items-center flex-wrap gap-4"><a href="../index.html" class="footer-brand">Caposeo</a><div style="display:flex;gap:1.5rem;flex-wrap:wrap"><a href="decay-engine.html">Decay Engine</a><a href="llm-citation-gap.html">LLM Citation Gap</a><a href="ai-overview.html">AI Overview</a><a href="../pricing.html">Pricing</a></div></div></div></footer>
+<script src="../shared/charts.js"></script>
+</body>
+</html>

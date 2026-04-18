@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Content Editor with Live AI Scoring — Caposeo</title>
+  <meta name="description" content="12 SEO checks scored against TF-IDF baseline of top-10 ranking pages. Claude Sonnet scoring updates as you write. Real suggestions — not content grades."/>
+  <link rel="icon" href="../assets/caposeo-icon.png"/>
+  <link rel="stylesheet" href="../shared/styles.css"/>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="../assets/caposeo-logo.png" alt="Caposeo"/></a>
+    <div class="nav-links"><a href="../index.html#features">Features</a><a href="decay-engine.html">Decay Engine</a><a href="llm-citation-gap.html">LLM Citation Gap</a><a href="../pricing.html">Pricing</a></div>
+    <div class="nav-cta"><a href="../waitlist.html" class="btn btn-primary btn-sm">Get Early Access →</a></div>
+  </div>
+</nav>
+
+<section class="feature-hero section">
+  <div class="container">
+    <span class="badge badge-blue">✏️ Content Editor · Live AI Scoring</span>
+    <h1 style="max-width:720px;margin-top:1rem">Write against the actual pages you're trying to outrank.</h1>
+    <p class="lead mt-4" style="max-width:640px">
+      Clearscope gives you a number out of 100. We give you a structural comparison against the top-10 ranking pages
+      for your exact target query — live, as you type.
+      Claude Sonnet scores 12 SEO signals. Entity coverage via NLP. Real suggestions with specific edits, not badges.
+    </p>
+    <p class="mt-4" style="font-size:0.875rem;color:var(--primary);font-weight:600">
+      Real-time Claude-powered scoring against the actual content that's currently outranking you.
+    </p>
+    <div class="mt-6 flex gap-3 flex-wrap">
+      <a href="../waitlist.html" class="btn btn-primary btn-lg">Get Access →</a>
+      <a href="#methodology" class="btn btn-outline btn-lg">How Scoring Works</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">For Marketers</p>
+    <h2>Stop optimizing to a word count. Optimize to the pages beating you.</h2>
+    <p class="lead mt-4" style="max-width:680px">
+      Every content score on the market (Clearscope, Surfer, Frase) compares you to some aggregate or model.
+      We compare you to the actual top-10 pages for your specific query, right now.
+      If the #1 ranking page uses 14 named entity mentions and you have 3, we tell you that — not some abstract score.
+      Then Claude generates the specific sentences you should add to close the gap.
+    </p>
+    <div class="grid-4 mt-6">
+      <div class="card"><h4>TF-IDF baseline</h4><p class="text-sm mt-2">Scored against actual ranking content, not a generic model.</p></div>
+      <div class="card"><h4>Entity coverage</h4><p class="text-sm mt-2">NLP-powered entity extraction. See what entities the top pages mention that yours doesn't.</p></div>
+      <div class="card"><h4>Live as you type</h4><p class="text-sm mt-2">2-second debounce. Scores update while you write — no manual re-runs.</p></div>
+      <div class="card"><h4>Generate suggestions</h4><p class="text-sm mt-2">One click → Claude generates specific sentences to add for each gap.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="methodology">
+  <div class="container">
+    <p class="section-label">For Data Teams</p>
+    <h2>12 checks. All scored against real ranking data, not a generic model.</h2>
+    <div class="grid-2 mt-6" style="max-width:900px;gap:1.5rem">
+      <div>
+        <h4 style="margin-bottom:0.875rem">Semantic signals</h4>
+        <div style="display:flex;flex-direction:column;gap:0.5rem">
+          {["TF-IDF term coverage vs. top-10 mean","Named entity density (NER)","Entity overlap with cited corpora","Semantic similarity to top-3 pages (cosine)","Definition coverage for primary terms","First-paragraph search intent match"].map(s =>
+            `<div style="display:flex;gap:0.5rem;font-size:0.8125rem;padding:0.5rem 0;border-bottom:1px solid var(--border)"><span style="color:var(--success);font-weight:700">✓</span>${s}</div>`
+          ).join('')}
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-bottom:0.875rem">Structural signals</h4>
+        <div style="display:flex;flex-direction:column;gap:0.5rem">
+          {["H-tag hierarchy depth vs. ranking pages","Content length (absolute and relative)","Internal link density","Schema markup presence","Reading level vs. category mean","Multimedia coverage (images, tables, lists)"].map(s =>
+            `<div style="display:flex;gap:0.5rem;font-size:0.8125rem;padding:0.5rem 0;border-bottom:1px solid var(--border)"><span style="color:var(--success);font-weight:700">✓</span>${s}</div>`
+          ).join('')}
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;background:var(--surface-cool);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;max-width:900px">
+      <p class="text-sm" style="color:var(--ink)"><strong>Why Claude Sonnet instead of an LLM-grader?</strong> We use Claude with structured output JSON schemas so every suggestion is machine-readable, prioritized, and actionable at the sentence level. Generic LLM graders produce prose feedback that requires interpretation. Ours produces: <code style="font-size:0.8125rem;background:var(--muted);padding:0.125rem 0.375rem;border-radius:0.25rem">{"type":"entity_gap","entity":"sales pipeline","recommendation":"Add definition in paragraph 2","priority":1}</code></p>
+    </div>
+  </div>
+</section>
+
+<!-- MOCK EDITOR UI -->
+<section class="section" style="background:var(--surface-warm)">
+  <div class="container">
+    <p class="section-label">What It Looks Like</p>
+    <h2>Live scoring panel — "best CRM for startups"</h2>
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:1.5rem;margin-top:1.5rem;max-width:1000px">
+      <div class="card" style="min-height:320px">
+        <div style="font-size:0.875rem;font-weight:600;margin-bottom:0.75rem;color:var(--muted-fg)">Draft content</div>
+        <p style="font-size:0.875rem;line-height:1.8;color:var(--fg)">The best CRM for startups depends on your stage. Early-stage teams often prioritize free tiers and ease of use, while growth-stage companies need pipeline management and integrations. In this guide we compare the top options across pricing, features, and scalability to help you make the right call for your team...</p>
+        <p style="font-size:0.75rem;color:var(--muted-fg);margin-top:1.5rem;border-top:1px solid var(--border);padding-top:0.75rem">● Scoring live · Updated 2s ago</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem">
+        <div class="card" style="padding:1rem">
+          <div style="font-size:0.8125rem;font-weight:700;margin-bottom:0.75rem">12-point score</div>
+          <div style="font-size:2.5rem;font-weight:800;color:var(--warning)">6<span style="font-size:1.25rem;color:var(--muted-fg)">/12</span></div>
+          <p class="text-xs text-muted mt-1">vs. top-10 mean: 9.2/12</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem">
+          {[["TF-IDF coverage","warn","68%"],["Entity density","fail","Low"],["First-paragraph intent","warn","Partial"],["H-tag depth","pass","Good"],["Schema markup","fail","Missing"],["Reading level","pass","Good"]].map(([label, state, val]) => {
+            const color = state==='pass'?'var(--success)':state==='warn'?'var(--warning)':'var(--danger)';
+            const icon = state==='pass'?'✓':state==='warn'?'⚠':'✗';
+            return `<div class="card" style="padding:0.5rem 0.75rem;display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:0.75rem">${label}</span>
+              <span style="font-size:0.75rem;color:${color};font-weight:700">${icon} ${val}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <button class="btn btn-primary btn-sm" style="pointer-events:none;justify-content:center">Generate Suggestions →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface-cool)">
+  <div class="container">
+    <p class="section-label">vs. Alternatives</p>
+    <table class="comparison-table" style="max-width:900px">
+      <thead><tr><th>Capability</th><th class="caposeo-col">Caposeo</th><th>Clearscope</th><th>Surfer SEO</th><th>Frase</th></tr></thead>
+      <tbody>
+        <tr><td>Baseline</td><td class="caposeo-col check">✓ Top-10 real pages</td><td class="partial">⚠ Proprietary model</td><td class="partial">⚠ SERP composite</td><td class="partial">⚠ SERP composite</td></tr>
+        <tr><td>Live updates as you type</td><td class="caposeo-col check">✓</td><td class="cross">✗ Manual rescore</td><td class="partial">⚠ Slow rescore</td><td class="partial">⚠ Manual</td></tr>
+        <tr><td>NLP entity gap analysis</td><td class="caposeo-col check">✓</td><td class="partial">⚠ Term lists only</td><td class="partial">⚠ NLP keywords</td><td class="cross">✗</td></tr>
+        <tr><td>Claude-generated line-level suggestions</td><td class="caposeo-col check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="partial">⚠ Generic AI</td></tr>
+        <tr><td>SHAP-ranked fix priority</td><td class="caposeo-col check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:760px">
+    <p class="section-label">Honest Limits</p>
+    <div class="honest-limits">
+      <h4>What Content Editor doesn't do</h4>
+      <p class="text-sm mt-2">TF-IDF coverage is a strong structural signal but not the only one that determines rankings. Backlink authority, domain trust, and EEAT signals aren't captured in a content editor. We don't claim that hitting a high score guarantees ranking improvement — we claim that you'll be structurally more similar to what's already ranking. For extremely low-competition queries (&lt;100 monthly searches), the baseline may reflect thin existing content, reducing the signal quality. We flag this automatically.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="text-align:center">
+  <div class="container">
+    <h2>Score against the real competition. Fix the real gaps.</h2>
+    <p class="lead mt-4" style="max-width:500px;margin:1.5rem auto">Stop writing to a grade. Write to beat the pages that are already ranking.</p>
+    <a href="../waitlist.html" class="btn btn-primary btn-lg mt-4">Get Founding Member Access →</a>
+    <p class="text-sm text-muted mt-3">Lock in $49/mo · First 100 signups only</p>
+  </div>
+</section>
+
+<footer><div class="container"><div class="flex justify-between items-center flex-wrap gap-4"><a href="../index.html" class="footer-brand">Caposeo</a><div style="display:flex;gap:1.5rem;flex-wrap:wrap"><a href="decay-engine.html">Decay Engine</a><a href="pulse-lab.html">Pulse Lab</a><a href="ai-overview.html">AI Overview</a><a href="../pricing.html">Pricing</a></div></div></div></footer>
+<script src="../shared/charts.js"></script>
+<script>
+// Render dynamic content that can't be in template literals in HTML
+document.querySelectorAll('p code').forEach(el => { el.style.fontFamily = 'JetBrains Mono, monospace'; });
+const checksEl = document.querySelector('[style*="grid-template-columns:1fr 320px"] > div:last-child');
+if (checksEl) {
+  const checks = [["TF-IDF coverage","warn","68%"],["Entity density","fail","Low"],["First-paragraph intent","warn","Partial"],["H-tag depth","pass","Good"],["Schema markup","fail","Missing"],["Reading level","pass","Good"]];
+  checksEl.querySelectorAll('[style*="flex-direction:column;gap:0.375rem"]').forEach(el => {
+    el.innerHTML = checks.map(([label,state,val]) => {
+      const color = state==='pass'?'var(--success)':state==='warn'?'var(--warning)':'var(--danger)';
+      const icon = state==='pass'?'✓':state==='warn'?'⚠':'✗';
+      return `<div class="card" style="padding:0.5rem 0.75rem;display:flex;align-items:center;justify-content:space-between"><span style="font-size:0.75rem">${label}</span><span style="font-size:0.75rem;color:${color};font-weight:700">${icon} ${val}</span></div>`;
+    }).join('');
+  });
+}
+</script>
+</body>
+</html>
